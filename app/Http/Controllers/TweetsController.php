@@ -36,18 +36,6 @@ class TweetsController extends Controller
                               ->latest()
                               ->get();
 
-        // foreach($tweets as $tweet)
-        // {
-
-        //     if ($tweet->retweet)
-        //     {
-
-        //         unset($tweets[$tweet->id]);
-
-        //     }
-
-        // }
-
         $auth_retweets = Tweet::where([['retweet', True], ['retweeted_by_id', auth()->user()->id]])->latest()->get();
 
         $tweets = $tweets->merge($following_tweets);
